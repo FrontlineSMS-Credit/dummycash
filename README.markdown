@@ -1,6 +1,7 @@
 # Dummy Payment Service
 Name of the service: DummyCash
 Settings required in Payment View service configuration:
+
 * server URL
 * username
 * password
@@ -27,11 +28,14 @@ response: 1500
 
 #### Send Payment
 ##### Variables
-| name   | description
-| u      | username
-| p      | password
-| to     | phone number of person to pay
-| amount | amount of money to transfer
+
+<table>
+	<tr><td>name</td><td>description</td></tr>
+	<tr><td>u</td><td>username</td></tr>
+	<tr><td>p</td><td>password</td></tr>
+	<tr><td>to</td><td>phone number of person to pay</td></tr>
+	<tr><td>amount</td><td>amount of money to transfer</td></tr>
+</table>
 
 ##### Example
 request URL: http://frontline-payment-server/send/?u=yourUsername&p=yourPassword&to=071234567&amount=300
@@ -40,10 +44,10 @@ response: OK
 #### Poll for new Incoming Payments
 request URL: http://frontline-payment-server/incoming/?u=yourUsername&p=yourPassword
 response:
-[
-	{"amount":"400", "sender":"asdfghjk", "date":"2011-10-06T12:29:11Z"},
-	{"amount":"12", "sender":"0324567", "date":"2011-10-06T12:24:11Z"}
-]
+	[
+		{"amount":"400", "sender":"asdfghjk", "date":"2011-10-06T12:29:11Z"},
+		{"amount":"12", "sender":"0324567", "date":"2011-10-06T12:24:11Z"}
+	]
 
 ### Errors
 Errors should be plain text response of mime type text and form:
@@ -61,4 +65,32 @@ There should be an HTTP form available on the server to generate incoming paymen
 
 ### Examples
 To make an HTTP request from FrontlineSMS, the simplest method to use is:
-net.frontlinesms.FrontlineUtils.makeHttpRequest(url, true)
+
+	net.frontlinesms.FrontlineUtils.makeHttpRequest(url, true)
+
+
+# Integration with FrontlineSMS
+
+## Structure
+
+The PaymentService itself should extend an abstract payment service class allowing hooks for:
+
+* running an incoming payment checking service
+* checking balance on demand
+* making an outgoing payment
+
+## Settings
+
+Settings should be defined for a PaymentService in a similar way to `net.frontlinesms.messaging.sms.internet.SmsInternetService`.  These classes just define the method `getPropertiesStructure()` and the UI for creating or modifying settings of a service is generated from that.  See also `net.frontlinesms.ui.handler.settings.SmsInternetServiceSettingsHandler` for UI handling.
+
+	/** 
+	 * Get the default properties for this class.
+	 */
+	public LinkedHashMap<String, Object> getPropertiesStructure() {
+		LinkedHashMap<String, Object> defaultSettings = new LinkedHashMap<String, Object>();
+		defaultSettings.put(PROPERTY_USERNAME, "");
+		defaultSettings.put(PROPERTY_PASSWORD, new PasswordString(""));
+		defaultSettings.put(PROPERTY_SERVER_URL, "");
+		return defaultSettings;
+	}
+
