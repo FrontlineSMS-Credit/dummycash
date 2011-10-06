@@ -8,7 +8,9 @@ class IncomingController extends BaseController {
 	def index = {
 		withAuth { u ->
 			render(contentType:"text/json") {
-				IncomingPayment.findAllByUser(u)
+				IncomingPayment.findAllByUser(u).collect {
+					[amount:it.amount, sender:it.sender, date:it.dateCreated]
+				}
 			}
 		}
 	}

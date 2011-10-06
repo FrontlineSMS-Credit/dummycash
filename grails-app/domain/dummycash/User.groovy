@@ -9,4 +9,8 @@ class User {
 	static constraints = {
 		lastChecked(nullable:true)
 	}
+	
+	String toString() {
+		username
+	}
 }
