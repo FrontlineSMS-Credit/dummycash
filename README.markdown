@@ -94,3 +94,6 @@ Settings should be defined for a PaymentService in a similar way to `net.frontli
 		return defaultSettings;
 	}
 
+# Possible Extensions
+
+* add "reason" field to incoming payments, and pass this into the `IncomingPayment.notes` field in FrontlineSMS.
