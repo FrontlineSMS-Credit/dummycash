@@ -94,6 +94,10 @@ Settings should be defined for a PaymentService in a similar way to `net.frontli
 		return defaultSettings;
 	}
 
+## Service Detection
+
+Services should be detected using an implementation of `ImplementationLoader<PaymentService>` which should check in `src/main/resources/META-INF/frontlinesms/payment/PaymentServices`.
+
 # Possible Extensions
 
 * add "reason" field to incoming payments, and pass this into the `IncomingPayment.notes` field in FrontlineSMS
