@@ -96,4 +96,6 @@ Settings should be defined for a PaymentService in a similar way to `net.frontli
 
 # Possible Extensions
 
-* add "reason" field to incoming payments, and pass this into the `IncomingPayment.notes` field in FrontlineSMS.
+* add "reason" field to incoming payments, and pass this into the `IncomingPayment.notes` field in FrontlineSMS
+* require different Client metadata than name+phonenumber (as per e.g. MPESA PayBill) using `CustomField`s
+* examine outgoing payments to PayBill in more detail and look at option of a `PaymentService` which allows multiple different classes of outgoing payment, each with own contraints and Client data requirements
