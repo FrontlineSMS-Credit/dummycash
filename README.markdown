@@ -1,3 +1,9 @@
+# Running DummyCash Web App
+To run the dummy cash web app:
+1. make sure you have grails installed (v 1.3.7) - http://grails.org/Installation
+2. clone the DummyCash git repository
+3. navigate to the DummyCash source directory on your local machine and execute command `grails run-app`
+
 # Dummy Payment Service
 Name of the service: DummyCash
 Settings required in Payment View service configuration:
