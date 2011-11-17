@@ -20,7 +20,7 @@ Settings required in Payment View service configuration:
 
 ### Transport protocol
 * calls to the API should be made with HTTP GET because it's easy to implement and debug
-* authentication should be performed on every transaction comparing the params 'u' and 'p' to the service's fixed username and password
+* authentication should be performed on every transaction comparing the params `u` and `p` to the service's fixed username and password
 * variable values should be URL encoded
 * responses should be JSON objects or strings as defined in *Methods* section
 
@@ -30,8 +30,13 @@ Settings required in Payment View service configuration:
 * poll for new incoming payments
 
 #### Check Balance
-request URL: http://frontline-payment-server/balance/?u=yourUsername&p=yourPassword
-response: 1500
+request URL:
+
+	http://frontline-payment-server/balance/?u=yourUsername&p=yourPassword
+
+response
+
+	1500
 
 #### Send Payment
 ##### Variables
@@ -45,20 +50,30 @@ response: 1500
 </table>
 
 ##### Example
-request URL: http://frontline-payment-server/send/?u=yourUsername&p=yourPassword&to=071234567&amount=300
-response: OK
+request URL:
+
+	http://frontline-payment-server/send/?u=yourUsername&p=yourPassword&to=071234567&amount=300
+
+response:
+
+	OK
 
 #### Poll for new Incoming Payments
-request URL: http://frontline-payment-server/incoming/?u=yourUsername&p=yourPassword
+request URL:
+
+	http://frontline-payment-server/incoming/?u=yourUsername&p=yourPassword
+
 response:
+
 	[
-		{"amount":"400", "sender":"asdfghjk", "date":"2011-10-06T12:29:11Z"},
-		{"amount":"12", "sender":"0324567", "date":"2011-10-06T12:24:11Z"}
+		{"amount":"400", "sender":"asdfghjk", "date":"2011-10-06 12:29:11 -0100"},
+		{"amount":"12", "sender":"0324567", "date":"2011-10-06 12:24:11 +0300"}
 	]
 
 ### Errors
 Errors should be plain text response of mime type text and form:
-ERROR: description text
+
+	ERROR: description text
 
 ### Server admin user accounts
 * There should be an HTTP form available on the server to generate new user/password combos.

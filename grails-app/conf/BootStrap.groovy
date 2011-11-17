@@ -1,7 +1,14 @@
 import dummycash.*
 
+import grails.converters.JSON;
+
 class BootStrap {
-	def init = { servletContext ->
+	def init = { servletContext ->		
+		JSON.registerObjectMarshaller(Date) {
+			return it?.format('yyyy-MM-dd HH:mm:ss Z')
+		}
+
+		
 		// create test users
 		[
 			['Nathan', 'secret', 100],
